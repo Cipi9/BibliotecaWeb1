@@ -1,0 +1,30 @@
+﻿@model PA_project.Models.Collection
+@{
+    ViewBag.Title = "AddCollection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create a new collection</h2>
+
+@using (Html.BeginForm("AddCollection", "Collection", FormMethod.Post))
+{
+    <div>
+        <label for="Title">Title:</label>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div>
+        <label for="Description">Description:</label>
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.IconUrl, "Creation Image:")
+        @Html.TextBoxFor(model => model.IconUrl, new { @class = "form-control", type = "file", accept = "image/*" })
+    </div>
+
+    <br />
+    <div>
+        <button type="submit" class="btn btn-primary">Create collection</button>
+    </div>
+}

@@ -1,0 +1,50 @@
+﻿@model List<PA_project.Models.Review>
+@{
+    ViewBag.Title = "SingleBookWithComments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>What others have to say about the book</h2>
+<br />
+
+@if (Model.Count > 0)
+{
+    <div>
+        <ul class="list-group">
+            @foreach (var review in Model)
+            {
+                <li class="list-group-item mb-3" style="background-color: #f8f9fa; border-color: #dee2e6;">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <h5 class="mb-1 text-primary" style="padding-right:5px">@review.USER.UserName</h5>
+                        <small class="text-muted">@review.CreationDate.ToString("MMM dd, yyyy")</small>
+                    </div>
+                    <p class="mb-1">@review.Text</p>
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div>
+        No comments yet.
+    </div>
+}
+
+<br />
+<div class="text-center">
+    <!-- Form for adding new comments -->
+    <h3>Add your own review:</h3>
+    @using (Html.BeginForm("AddReview", "Review", FormMethod.Post))
+    {
+        var bookIdFromUrl = Request.QueryString["bookId"];
+
+        @Html.Hidden("bookId", bookIdFromUrl)
+        <div>
+            @Html.TextArea("commentText", null, new { @class = "form-control", rows = "4", placeholder = "Leave your comment here" })
+        </div>
+        <br />
+        <input type="submit" class="btn btn-primary" value="Add review" />
+    }
+</div>
+

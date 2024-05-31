@@ -1,0 +1,83 @@
+﻿@model PA_project.Models.Book
+
+@{
+    ViewBag.Title = "SingleBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .long_text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 50%;
+    }
+
+    .centered-text {
+        text-align: center;
+        word-wrap: break-word; /* For non-IE browsers */
+        overflow-wrap: break-word; /* For IE 11 */
+    }
+</style>
+
+<h1>@Model.Title</h1>
+
+<div style="text-align: center; padding: 20px;">
+    <img src="~/Content/images/books/@Model.ImageUrl" alt="@Model.Title" style="max-width: 40%; height: auto; padding: 20px;" />
+    <div class="form-horizontal text-center centered-text"  style="max-width: 50%; margin: 0 auto;">
+        <p><strong>Author:</strong> @Model.Author</p>
+        <p><strong>Description:</strong><br> @Model.Description</p>
+        <p><strong>Genre:</strong> @Model.Genre</p>
+        <p><strong>Release Date:</strong> @Model.PublicationYear</p>
+    </div>
+    <br />
+    <div class="form-horizontal text-center">
+        <div class="form-group row align-items-center">
+            <div>
+                <label for="selectedCollection" class="col-md-2 control-label"><strong>Select collection:</strong></label>
+            </div>
+            <div style="padding-bottom:20px">
+                <select name="selectedCollection" id="selectedCollection" class="form-control mx-auto">
+                    @{
+                        List<PA_project.Models.Collection> collections = PA_project.Utils.LoginHelper.Instance.ExistingCollections;
+                    }
+                    @foreach (var collection in collections)
+                    {
+                        <option value="@collection.CollectionId">@collection.Title</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <!-- Use JavaScript to trigger the AddToCollection action -->
+                <a href="#" id="addToCollectionLink" class="btn btn-info mx-auto">Add book to collection</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#addToCollectionLink").click(function() {
+                var selectedCollectionId = $("#selectedCollection").val();
+                var bookId = @Model.BookId; // Assuming Model.BookId is an integer
+
+                // Use JavaScript to navigate to the AddToCollection action
+                window.location.href = "@Url.Action("AddToCollection", "Book")?bookId=" + bookId + "&selectedCollectionId=" + selectedCollectionId;
+            });
+        });
+    </script>
+</div>
+
+@using (Html.BeginForm("Delete", "Book", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.BookId)
+
+    <br />
+    <div>
+        @if (PA_project.Utils.LoginHelper.Instance.UserId == Model.UserId)
+        {
+            <a href="@Url.Action("EditBook", "Book", new { bookId = Model.BookId })" class="btn btn-success">Edit</a>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        }
+        <a href="@Url.Action("SingleBookWithComments", "Book", new { bookId = Model.BookId })" class="btn text-white" style="background-color:mediumpurple">See reviews</a>
+    </div>
+}
