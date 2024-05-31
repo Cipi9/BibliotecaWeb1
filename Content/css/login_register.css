@@ -1,0 +1,133 @@
+ body {
+     font-family: 'Arial', sans-serif;
+     background: url('path/to/your/image.jpg') center center fixed;
+     background-size: cover;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+     margin: 0;
+ }
+
+ .login-container {
+     background-color: rgba(255, 255, 255, 0.8);
+     padding: 40px;
+     border-radius: 8px;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     width: 80%;
+     max-width: 400px;
+ }
+
+h1 {
+    color: #f4623a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.quote-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+ .quote {
+     font-style: italic;
+     color: #555;
+ }
+
+ form {
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 20px;
+ }
+
+ label {
+     margin-bottom: 12px;
+     color: #333;
+ }
+
+ input {
+     padding: 12px;
+     margin-bottom: 20px;
+     border: 2px solid #f4623a;
+     border-radius: 6px;
+ }
+
+ button {
+     background-color: #f4623a;
+     color: #fff;
+     padding: 12px;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+ }
+
+     button:hover {
+         background-color: #d44927;
+     }
+
+ .register-link {
+     text-align: center;
+     margin-top: 20px;
+     color: #333;
+ }
+
+     .register-link a {
+         color: #f4623a;
+     }
+
+
+ .register-container {
+     background-color: rgba(255, 255, 255, 0.8);
+     padding: 40px;
+     border-radius: 8px;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     width: 80%;
+     max-width: 400px;
+ }
+
+    .register-container h1 {
+        color: #f4623a;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+     .register-container form {
+         display: flex;
+         flex-direction: column;
+         margin-bottom: 20px;
+     }
+
+     .register-container label {
+         margin-bottom: 12px;
+         color: #333;
+     }
+
+     .register-container input {
+         padding: 12px;
+         margin-bottom: 20px;
+         border: 2px solid #f4623a;
+         border-radius: 6px;
+     }
+
+     .register-container button {
+         background-color: #f4623a;
+         color: #fff;
+         padding: 12px;
+         border: none;
+         border-radius: 6px;
+         cursor: pointer;
+     }
+
+         .register-container button:hover {
+             background-color: #d44927;
+         }
+
+ .login-link {
+     text-align: center;
+     margin-top: 20px;
+     color: #333;
+ }
+
+     .login-link a {
+         color: #f4623a;
+     }
